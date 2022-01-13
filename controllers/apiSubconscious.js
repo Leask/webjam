@@ -8,6 +8,7 @@ const fs = require('fs').promises;
 
 const [ptcHttp, ptcHttps] = ['http', 'https'];
 const [wildcardPath, wildcardMethod] = [['*'], ['*']];
+const INTERNAL_SERVER_ERROR = 'Internal Server Error';
 
 const analyze = async (ctx, next) => {
     ctx.originProtocol = ctx.socket.encrypted || (ctx.app.proxy
@@ -42,12 +43,15 @@ const extendCtx = async (ctx, next) => {
 
 const errorHandler = async (ctx, next) => {
     try { await next(); } catch (err) {
-        if (err.status
+        if (!(err.status
             && err.status >= httpStatus.BAD_REQUEST
-            && err.status < httpStatus.INTERNAL_SERVER_ERROR) {
-            return ctx.er(err);
+            && err.status < httpStatus.INTERNAL_SERVER_ERROR)) {
+            console.error(err);
+            err = utilitas.newError(
+                INTERNAL_SERVER_ERROR, httpStatus.INTERNAL_SERVER_ERROR
+            );
         }
-        throw err;
+        return ctx.er(err);
     }
 };
 
