@@ -112,6 +112,6 @@ dist
 # Leask
 package-lock.json
 debug/
-debug.js
+debug.mjs
 public/storage/*
 !public/storage/.gitkeep

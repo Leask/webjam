@@ -1,6 +1,4 @@
-'use strict';
-
-const { identity } = require('..');
+import { identity } from ('..');
 
 const getUrls = (prdr, opt) => {
     return [identity.getAuthUrl(prdr, opt), identity.getCallbackUrl(prdr, opt)];
@@ -11,7 +9,7 @@ const authCallback = async (ctx, next) => {
     ctx.redirect(`${identity.successRedirect}?token=${ctx.req.user.token.id}`);
 };
 
-module.exports = {
+export const { link, actions } = {
     link: 'identity',
     actions: [
         {

@@ -1,7 +1,5 @@
-'use strict';
-
-const { user, token } = require('../');
-const path = require('path');
+import { user, token } from '..';
+import path from 'path';
 
 const getPath = (subPath) => { return path.join('api/users', subPath); };
 
@@ -72,7 +70,7 @@ const changePassword = async (ctx, next) => {
     ctx.ok(resp);
 };
 
-module.exports = {
+export const { link, actions } = {
     link: 'user',
     actions: [
         {

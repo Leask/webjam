@@ -1,5 +1,3 @@
-'use strict';
-
 const wrap = async (ctx, next) => {
     const resp = {};
     ctx.request.files.map((file) => {
@@ -8,7 +6,7 @@ const wrap = async (ctx, next) => {
     ctx.ok(resp);
 };
 
-module.exports = {
+export const { link, actions } = {
     link: 'file',
     actions: [
         {
@@ -19,5 +17,5 @@ module.exports = {
             upload: true,
             share: true,
         },
-    ],
+    ]
 };

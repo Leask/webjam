@@ -1,10 +1,7 @@
-'use strict';
-
-const { utilitas, geoIp } = require('utilitas');
-
-const httpStatus = require('http-status');
-const path = require('path');
-const fs = require('fs').promises;
+import { promises as fs } from 'fs';
+import { utilitas, geoIp } from 'utilitas';
+import httpStatus from 'http-status';
+import path from 'path';
 
 const [ptcHttp, ptcHttps] = ['http', 'https'];
 const [wildcardPath, wildcardMethod] = [['*'], ['*']];
@@ -73,7 +70,7 @@ const notFound = async (ctx, next) => {
     ctx.status = status;
 };
 
-module.exports = {
+export const { link, actions } = {
     link: 'subconscious',
     disabled: false,
     actions: [

@@ -1,9 +1,9 @@
-'use strict';
+import { fileURLToPath } from 'url';
+import { utilitas } from 'utilitas';
+import * as service from '../lib/service.mjs';
+import * as token from '../lib/token.mjs';
 
-const { utilitas } = require('utilitas');
-const service = require('../lib/service');
-const token = require('../lib/token');
-
+const __filename = fileURLToPath(import.meta.url);
 const log = (content) => { return utilitas.modLog(content, __filename); };
 
 const action = async () => {
@@ -11,7 +11,7 @@ const action = async () => {
     log(`${resp && resp.affectedRows || 0} expired tokens have been cleared.`);
 };
 
-module.exports = {
+export const { run, func, interval, tout, delay } = {
     run: service.checkLink('user'),
     func: action,
     interval: 60,
