@@ -1,4 +1,4 @@
-import { identity } from ('..');
+import { identity } from '../index.mjs';
 
 const getUrls = (prdr, opt) => {
     return [identity.getAuthUrl(prdr, opt), identity.getCallbackUrl(prdr, opt)];

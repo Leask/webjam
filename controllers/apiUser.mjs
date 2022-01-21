@@ -1,4 +1,4 @@
-import { user, token } from '..';
+import { user, token } from '../index.mjs';
 import path from 'path';
 
 const getPath = (subPath) => { return path.join('api/users', subPath); };
