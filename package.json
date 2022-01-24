@@ -1,7 +1,7 @@
 {
     "name": "websrv",
     "description": "Tiny web server based on koa.",
-    "version": "1989.7.10",
+    "version": "1989.7.11",
     "private": false,
     "homepage": "https://github.com/Leask/websrv",
     "main": "index.mjs",
