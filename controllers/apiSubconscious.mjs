@@ -6,6 +6,7 @@ import path from 'path';
 const [ptcHttp, ptcHttps] = ['http', 'https'];
 const [wildcardPath, wildcardMethod] = [['*'], ['*']];
 const INTERNAL_SERVER_ERROR = 'Internal Server Error';
+const UNPROCESSABLE_ENTITY = 'Unprocessable Entity';
 
 const analyze = async (ctx, next) => {
     ctx.originProtocol = ctx.socket.encrypted || (ctx.app.proxy
@@ -27,19 +28,26 @@ const extendCtx = async (ctx, next) => {
         ctx.body = { data: data || {}, error: null, success: true };
     };
     ctx.er = (error, status) => {
-        ctx.status = error && error.status || status || 400;
+        ctx.status = error?.status || status || 400;
         ctx.body = {
-            error: error && error.message
+            error: error?.message
                 || (typeof error === 'string' ? error : null)
                 || httpStatus[`${ctx.status}_NAME`] || 'Unknown error.',
-            details: error && error.details || {}, success: false,
+            details: error?.details || {}, success: false,
         };
     };
     await next();
 };
 
 const errorHandler = async (ctx, next) => {
-    try { await next(); } catch (err) {
+    try {
+        utilitas.assert(
+            !ctx.error,
+            UNPROCESSABLE_ENTITY, httpStatus.UNPROCESSABLE_ENTITY,
+            { details: ctx.error?.message || UNPROCESSABLE_ENTITY }
+        );
+        await next();
+    } catch (err) {
         if (!(err.status
             && err.status >= httpStatus.BAD_REQUEST
             && err.status < httpStatus.INTERNAL_SERVER_ERROR)) {
@@ -78,7 +86,7 @@ export const { link, actions } = {
             path: wildcardPath,
             method: wildcardMethod,
             priority: -8960,
-            process: [analyze, errorHandler, extendCtx],
+            process: [analyze, extendCtx, errorHandler],
             auth: false,
             upload: false,
             share: false,
