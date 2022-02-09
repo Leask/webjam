@@ -15,7 +15,7 @@ export const { link, actions } = {
         {
             path: getUrls(identity.sTwitter),
             method: 'GET',
-            process: [identity.authenticate(identity.sTwitter), authCallback],
+            process: [await identity.authenticate(identity.sTwitter), authCallback],
         },
     ],
 };
