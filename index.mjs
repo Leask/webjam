@@ -1,6 +1,7 @@
 export * from 'utilitas';
 export * as file from './lib/file.mjs';
 export * as identity from './lib/identity.mjs';
+export * as robot from './lib/robot.mjs';
 export * as router from './lib/router.mjs';
 export * as service from './lib/service.mjs';
 export * as token from './lib/token.mjs';
