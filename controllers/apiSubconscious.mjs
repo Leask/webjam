@@ -1,8 +1,11 @@
+import { fileURLToPath } from 'url';
 import { promises as fs } from 'fs';
 import { utilitas, geoIp } from 'utilitas';
 import httpStatus from 'http-status';
 import path from 'path';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const [ptcHttp, ptcHttps] = ['http', 'https'];
 const [wildcardPath, wildcardMethod] = [['*'], ['*']];
 const INTERNAL_SERVER_ERROR = 'Internal Server Error';
@@ -72,9 +75,7 @@ const notFound = async (ctx, next) => {
     if (/^\/api\/.*/.test(ctx.request.url)) {
         return ctx.er({ error: 'API not found.' }, status);
     }
-    ctx.body = await fs.readFile(path.join(
-        path.dirname(module.filename), '../public/404.html'
-    ), 'utf8');
+    ctx.body = await fs.readFile(path.join(__dirname, '../public/404.html'), 'utf8');
     ctx.status = status;
 };
 
