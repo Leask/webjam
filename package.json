@@ -41,6 +41,6 @@
         "koa-useragent": "^4.0.0",
         "multer": "^1.4.4",
         "passport-twitter": "^1.0.4",
-        "utilitas": "^1989.9.28"
+        "utilitas": "^1989.9.29"
     }
 }
