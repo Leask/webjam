@@ -28,7 +28,7 @@
         "@koa/cors": "^3.1.0",
         "@koa/multer": "^3.0.0",
         "@koa/router": "^10.1.1",
-        "@sentry/tracing": "^6.17.6",
+        "@sentry/tracing": "^6.17.8",
         "domain": "^0.0.1",
         "http-status": "^1.5.0",
         "koa": "^2.13.4",
@@ -41,6 +41,6 @@
         "koa-useragent": "^4.0.0",
         "multer": "^1.4.4",
         "passport-twitter": "^1.0.4",
-        "utilitas": "^1989.9.34"
+        "utilitas": "^1989.9.40"
     }
 }
