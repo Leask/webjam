@@ -42,10 +42,14 @@ const extendCtx = async (ctx, next) => {
     await next();
 };
 
+const ignoreError = (ctx) => {
+    return ctx.request.header?.authorization?.startsWith?.('Splunk');
+};
+
 const errorHandler = async (ctx, next) => {
     try {
         utilitas.assert(
-            !ctx.error,
+            !ctx.error || ignoreError(ctx),
             UNPROCESSABLE_ENTITY, httpStatus.UNPROCESSABLE_ENTITY,
             { details: ctx.error?.message || UNPROCESSABLE_ENTITY }
         );
