@@ -1,6 +1,6 @@
 {
     "name": "websrv",
-    "description": "Tiny web server based on koa.",
+    "description": "A straightforward web framework build for common tasks.",
     "version": "1989.7.32",
     "private": false,
     "homepage": "https://github.com/Leask/websrv",
@@ -13,9 +13,9 @@
         "start": "node index.mjs",
         "debug": "node --inspect --trace-warnings debug.mjs",
         "test": "node --inspect --trace-warnings test.mjs",
-        "updep": "npx ncu -u && npm install && ( git commit -am 'update dependencies' || true )",
-        "gitsync": "git pull && git push",
-        "prepublishOnly": "npm version patch && npm run updep && npm run gitsync"
+        "updep": "npx ncu -u && npm install",
+        "gitsync": "( git commit -am \"Released @ `date`\" || true ) && git pull && git push",
+        "prepublishOnly": "npm run updep && npm version patch && npm run gitsync"
     },
     "author": "Leask Wong <i@leaskh.com>",
     "license": "MIT",
