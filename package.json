@@ -15,7 +15,8 @@
         "test": "node --inspect --trace-warnings test.mjs",
         "updep": "npx ncu -u && npm install",
         "gitsync": "( git commit -am \"Released @ `date`\" || true ) && git pull && git push",
-        "prepublishOnly": "npm run updep && npm version patch && npm run gitsync"
+        "build": "npm run updep && npm version patch",
+        "prepublishOnly": "npm run build && npm run gitsync"
     },
     "author": "Leask Wong <i@leaskh.com>",
     "license": "MIT",
