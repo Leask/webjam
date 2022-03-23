@@ -15,7 +15,7 @@
         "test": "node --inspect --trace-warnings test.mjs",
         "updep": "npx ncu -u && npm install",
         "gitsync": "( git commit -am \"Released @ `date`\" || true ) && git pull && git push",
-        "build": "npm run updep && npm version patch",
+        "build": "npm run updep && ( git commit -am 'update dependencies' || true ) && npm version patch",
         "prepublishOnly": "npm run build && npm run gitsync",
         "beta": "npm publish --tag beta"
     },
