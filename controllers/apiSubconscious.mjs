@@ -7,7 +7,7 @@ import path from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const root = path.join(__dirname, '..');
+const root = process.cwd();
 const [ptcHttp, ptcHttps] = ['http', 'https'];
 const [wildcardPath, wildcardMethod] = [['*'], ['*']];
 const INTERNAL_SERVER_ERROR = 'Internal Server Error';
