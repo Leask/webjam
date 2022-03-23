@@ -19,6 +19,5 @@ export const { link, actions } = {
             method: wildcardMethod,
             process: collect,
         },
-
     ],
 };

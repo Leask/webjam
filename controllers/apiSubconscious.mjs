@@ -90,10 +90,6 @@ const poke = async (ctx, next) => {
     });
 };
 
-const sendUtilitas = async (ctx, next) => {
-    await ctx.send('node_modules/utilitas/dist/utilitas.lite.mjs');
-};
-
 const notFound = async (ctx, next) => {
     const status = 404;
     if (/^\/api\/.*/.test(ctx.request.url)) {
@@ -121,15 +117,6 @@ export const { link, actions } = {
             method: wildcardMethod,
             priority: -8940,
             process: [poke],
-            auth: false,
-            upload: false,
-            share: false,
-        },
-        {
-            path: ['lib/utilitas/utilitas.lite.mjs'],
-            method: ['GET'],
-            priority: -8920,
-            process: [sendUtilitas],
             auth: false,
             upload: false,
             share: false,
