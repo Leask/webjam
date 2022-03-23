@@ -1,15 +1,18 @@
+import { default as send } from 'koa-send';
 import { fileURLToPath } from 'url';
 import { promises as fs } from 'fs';
-import { utilitas, geoIp } from 'utilitas';
+import { utilitas, geoIp, storage } from 'utilitas';
 import httpStatus from 'http-status';
 import path from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const root = path.join(__dirname, '..');
 const [ptcHttp, ptcHttps] = ['http', 'https'];
 const [wildcardPath, wildcardMethod] = [['*'], ['*']];
 const INTERNAL_SERVER_ERROR = 'Internal Server Error';
 const UNPROCESSABLE_ENTITY = 'Unprocessable Entity';
+const fTime = (time) => Math.floor(time.getTime() / 1000);
 
 const analyze = async (ctx, next) => {
     ctx.originProtocol = ctx.socket.encrypted || (ctx.app.proxy
@@ -41,6 +44,16 @@ const extendCtx = async (ctx, next) => {
                 || httpStatus[`${ctx.status}_NAME`] || 'Unknown error.',
             details: error?.details || {}, success: false,
         };
+    };
+    ctx.send = async (file) => {
+        const cacheTime = ctx.request.header?.['if-modified-since']
+            ? new Date(ctx.request.header?.['if-modified-since']) : null;
+        const stat = utilitas.isDate(cacheTime, true)
+            ? await storage.exists(path.join(root, file)) : null;
+        if (cacheTime && stat && (fTime(cacheTime) >= fTime(stat.mtime))) {
+            return ctx.status = 304;
+        }
+        await send(ctx, file, { root });
     };
     await next();
 };
@@ -77,6 +90,10 @@ const poke = async (ctx, next) => {
     });
 };
 
+const sendUtilitas = async (ctx, next) => {
+    await ctx.send('node_modules/utilitas/dist/utilitas.lite.mjs');
+};
+
 const notFound = async (ctx, next) => {
     const status = 404;
     if (/^\/api\/.*/.test(ctx.request.url)) {
@@ -104,6 +121,15 @@ export const { link, actions } = {
             method: wildcardMethod,
             priority: -8940,
             process: [poke],
+            auth: false,
+            upload: false,
+            share: false,
+        },
+        {
+            path: ['lib/utilitas/utilitas.lite.mjs'],
+            method: ['GET'],
+            priority: -8920,
+            process: [sendUtilitas],
             auth: false,
             upload: false,
             share: false,
