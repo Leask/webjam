@@ -2,7 +2,6 @@ import { utilitas, shot } from '../index.mjs';
 
 const fetch = async (ctx, next) => {
     const resp = await shot.get(ctx.request.query.url, { encode: 'BUFFER' });
-    console.log(resp);
     const chT = new Date(ctx.request.header?.['if-modified-since'] || undefined);
     const mdT = new Date(resp.headers['last-modified']?.[0] || undefined);
     ctx.set('content-type', resp.headers['content-type']);
