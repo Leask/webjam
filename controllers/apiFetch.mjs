@@ -1,4 +1,4 @@
-import { utilitas, shot } from '../index.mjs';
+import { shot } from '../index.mjs';
 
 const fetch = async (ctx, next) => {
     const resp = await shot.get(ctx.request.query.url, { encode: 'BUFFER' });
@@ -7,7 +7,7 @@ const fetch = async (ctx, next) => {
     ctx.set('content-type', resp.headers['content-type']);
     ctx.set('last-modified', resp.headers['last-modified']);
     ctx.set('cache-control', 'max-age=0');
-    if (utilitas.isDate(chT, true) && utilitas.isDate(mdT, true) && chT >= mdT) {
+    if (Date.isDate(chT, true) && Date.isDate(mdT, true) && chT >= mdT) {
         return ctx.status = 304;
     }
     ctx.body = resp.content;

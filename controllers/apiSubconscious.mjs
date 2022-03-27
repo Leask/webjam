@@ -1,12 +1,10 @@
 import { default as send } from 'koa-send';
-import { fileURLToPath } from 'url';
 import { promises as fs } from 'fs';
 import { utilitas, geoIp, storage } from 'utilitas';
 import httpStatus from 'http-status';
 import path from 'path';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const { __dirname } = utilitas.__(import.meta.url);
 const root = process.cwd();
 const [ptcHttp, ptcHttps] = ['http', 'https'];
 const [wildcardPath, wildcardMethod] = [['*'], ['*']];
@@ -48,7 +46,7 @@ const extendCtx = async (ctx, next) => {
     ctx.send = async (file) => {
         const cacheTime = ctx.request.header?.['if-modified-since']
             ? new Date(ctx.request.header?.['if-modified-since']) : null;
-        const stat = utilitas.isDate(cacheTime, true)
+        const stat = Date.isDate(cacheTime, true)
             ? await storage.exists(path.join(root, file)) : null;
         if (cacheTime && stat && (fTime(cacheTime) >= fTime(stat.mtime))) {
             return ctx.status = 304;

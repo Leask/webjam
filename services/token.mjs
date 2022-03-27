@@ -1,9 +1,8 @@
-import { fileURLToPath } from 'url';
 import { utilitas } from 'utilitas';
 import * as service from '../lib/service.mjs';
 import * as token from '../lib/token.mjs';
 
-const __filename = fileURLToPath(import.meta.url);
+const { __filename } = utilitas.__(import.meta.url);
 const log = (content) => { return utilitas.modLog(content, __filename); };
 
 const action = async () => {
