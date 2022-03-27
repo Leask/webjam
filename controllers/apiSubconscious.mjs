@@ -64,7 +64,7 @@ const ignoreError = (ctx) => {
 
 const errorHandler = async (ctx, next) => {
     try {
-        utilitas.assert(
+        assert(
             !ctx.error || ignoreError(ctx),
             UNPROCESSABLE_ENTITY, httpStatus.UNPROCESSABLE_ENTITY,
             { details: ctx.error?.message || UNPROCESSABLE_ENTITY }
