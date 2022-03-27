@@ -1,7 +1,7 @@
 {
     "name": "websrv",
     "description": "A straightforward web framework build for common tasks.",
-    "version": "1989.7.50",
+    "version": "1989.7.51",
     "private": false,
     "homepage": "https://github.com/Leask/websrv",
     "main": "index.mjs",
