@@ -1,17 +1,16 @@
+import { checkLink } from '../lib/service.mjs';
+import { cleanup } from '../lib/token.mjs';
 import { utilitas } from 'utilitas';
-import * as service from '../lib/service.mjs';
-import * as token from '../lib/token.mjs';
 
-const { __filename } = utilitas.__(import.meta.url);
-const log = (content) => { return utilitas.modLog(content, __filename); };
+const log = (content) => utilitas.log(content, import.meta.url);
 
 const action = async () => {
-    const resp = await token.cleanup();
+    const resp = await cleanup();
     log(`${resp && resp.affectedRows || 0} expired tokens have been cleared.`);
 };
 
 export const { run, func, interval, tout, delay } = {
-    run: service.checkLink('user'),
+    run: checkLink('user'),
     func: action,
     interval: 60,
     tout: 60,

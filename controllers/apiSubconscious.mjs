@@ -1,8 +1,8 @@
 import { default as send } from 'koa-send';
+import { geoIp, storage, utilitas } from 'utilitas';
+import { join } from 'path';
 import { promises as fs } from 'fs';
-import { utilitas, geoIp, storage } from 'utilitas';
 import httpStatus from 'http-status';
-import path from 'path';
 
 const { __dirname } = utilitas.__(import.meta.url);
 const root = process.cwd();
@@ -47,7 +47,7 @@ const extendCtx = async (ctx, next) => {
         const cacheTime = ctx.request.header?.['if-modified-since']
             ? new Date(ctx.request.header?.['if-modified-since']) : null;
         const stat = Date.isDate(cacheTime, true)
-            ? await storage.exists(path.join(root, file)) : null;
+            ? await storage.exists(join(root, file)) : null;
         if (cacheTime && stat && (fTime(cacheTime) >= fTime(stat.mtime))) {
             return ctx.status = 304;
         }
@@ -93,7 +93,7 @@ const notFound = async (ctx, next) => {
     if (/^\/api\/.*/.test(ctx.request.url)) {
         return ctx.er({ error: 'API not found.' }, status);
     }
-    ctx.body = await fs.readFile(path.join(__dirname, '../public/404.html'), 'utf8');
+    ctx.body = await fs.readFile(join(__dirname, '../public/404.html'), 'utf8');
     ctx.status = status;
 };
 

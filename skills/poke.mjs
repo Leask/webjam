@@ -1,4 +1,4 @@
-import * as robot from '../lib/robot.mjs';
+import { checkLink } from '../lib/robot.mjs';
 
 const action = async (bot) => {
     bot.hears('poke', async (ctx, next) => {
@@ -8,6 +8,6 @@ const action = async (bot) => {
 };
 
 export const { run, func } = {
-    run: robot.checkLink('bot'),
+    run: checkLink('bot'),
     func: action,
 };

@@ -1,7 +1,7 @@
-import { user, token } from '../index.mjs';
-import path from 'path';
+import { join } from 'path';
+import { token, user } from '../index.mjs';
 
-const getPath = (subPath) => { return path.join('api/users', subPath); };
+const getPath = (subPath) => join('api/users', subPath);
 
 const verifyToken = async (ctx, next) => {
     const tkn = (ctx.get('Authorization')
