@@ -1,10 +1,8 @@
-import { default as send } from 'koa-send';
 import { geoIp, storage, utilitas } from 'utilitas';
 import { join } from 'path';
-import { promises as fs } from 'fs';
 import httpStatus from 'http-status';
+import send from 'koa-send';
 
-const { __dirname } = utilitas.__(import.meta.url);
 const root = process.cwd();
 const [ptcHttp, ptcHttps] = ['http', 'https'];
 const [wildcardPath, wildcardMethod] = [['*'], ['*']];
@@ -93,7 +91,9 @@ const notFound = async (ctx, next) => {
     if (/^\/api\/.*/.test(ctx.request.url)) {
         return ctx.er({ error: 'API not found.' }, status);
     }
-    ctx.body = await fs.readFile(join(__dirname, '../public/404.html'), 'utf8');
+    ctx.body = await storage.readFile(
+        utilitas.__(import.meta.url, '../public/404.html')
+    );
     ctx.status = status;
 };
 
