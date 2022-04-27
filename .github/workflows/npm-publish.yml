@@ -26,7 +26,6 @@ jobs:
       - run: npm version patch -m "[RELEASE] %s"
       - run: git push
       - run: npm install
-      - run: node build.mjs
       - run: npm test
       - run: npm publish
         env:
