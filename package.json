@@ -11,12 +11,12 @@
     },
     "scripts": {
         "start": "node --no-warnings main.mjs",
-        "debug": "node --inspect --trace-warnings debug.mjs",
-        "test": "node --inspect --trace-warnings test.mjs",
+        "debug": "node --no-warnings --inspect --trace-warnings debug.mjs",
+        "test": "node --no-warnings --trace-warnings test.mjs",
         "updep": "npx ncu -u && npm install",
         "gitsync": "( git commit -am \"Released @ `date`\" || true ) && git pull && git push",
-        "build": "npm run updep && ( git commit -am 'update dependencies' || true ) && npm version patch",
-        "prepublishOnly": "npm run build && npm run gitsync",
+        "build": "npm run updep && ( git commit -am 'update dependencies' || true )",
+        "pub": "npm run build && npm run gitsync",
         "beta": "npm publish --tag beta"
     },
     "author": "Leask Wong <i@leaskh.com>",
