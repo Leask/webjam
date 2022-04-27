@@ -11,7 +11,7 @@ const UNPROCESSABLE_ENTITY = 'Unprocessable Entity';
 const fTime = (time) => Math.floor(time.getTime() / 1000);
 
 const analyze = async (ctx, next) => {
-    ctx.originProtocol = ctx.socket.encrypted || (ctx.app.proxy
+    ctx.originProtocol = ctx.socket.encrypted || (websrv.proxy
         && ctx.get('X-Forwarded-Proto').split(/\s*,\s*/)[0] === ptcHttps)
         ? ptcHttps : ptcHttp; // patch: https://github.com/koajs/koa/issues/974
     ctx.cookies.secure = ctx.encrypted = ctx.originProtocol === ptcHttps;
