@@ -1,3 +1,3 @@
-import websrv from './index.mjs';
+import webjam from './index.mjs';
 
-await websrv.init({});
+await webjam.init({});

@@ -8,5 +8,5 @@ export * as splunk from './lib/splunk.mjs';
 export * as token from './lib/token.mjs';
 export * as tracing from './lib/tracing.mjs';
 export * as user from './lib/user.mjs';
-export * as websrv from './lib/websrv.mjs';
-export * as default from './lib/websrv.mjs';
+export * as webjam from './lib/webjam.mjs';
+export * as default from './lib/webjam.mjs';

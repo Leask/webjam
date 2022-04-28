@@ -8,8 +8,8 @@ const cpuCount = cpus().length;
 let forked = 0;
 
 const action = async () => {
-    while (Object.keys(websrv.processes).length < cpuCount) {
-        websrv.processes.push(cluster.fork({ FORKED: ++forked }));
+    while (Object.keys(webjam.processes).length < cpuCount) {
+        webjam.processes.push(cluster.fork({ FORKED: ++forked }));
     }
 };
 
