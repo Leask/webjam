@@ -1,9 +1,9 @@
 {
-    "name": "websrv-3",
+    "name": "webjam",
     "description": "A straightforward web framework build for common tasks.",
-    "version": "1989.8.2",
+    "version": "1990.0.1",
     "private": false,
-    "homepage": "https://github.com/Leask/websrv",
+    "homepage": "https://github.com/Leask/webjam",
     "main": "index.mjs",
     "type": "module",
     "engines": {
@@ -23,7 +23,7 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Leask/websrv"
+        "url": "https://github.com/Leask/webjam"
     },
     "dependencies": {
         "@google-cloud/storage": "^5.19.3",
