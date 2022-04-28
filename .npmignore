@@ -1,6 +1,7 @@
 .history
+/.github
 /debug
-/debug.js
+/debug.mjs
 /gears
 /package-lock.json
 /public/storage/*
