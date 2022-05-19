@@ -68,7 +68,7 @@ const errorHandler = async (ctx, next) => {
         await next();
     } catch (err) {
         if (!(err.status
-            && err.status >= httpStatus.BAD_REQUEST
+            && err.status >= httpStatus.OK
             && err.status < httpStatus.INTERNAL_SERVER_ERROR)) {
             console.error(err);
             err = utilitas.newError(
