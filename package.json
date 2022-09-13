@@ -26,12 +26,12 @@
         "url": "https://github.com/Leask/webjam"
     },
     "dependencies": {
-        "@google-cloud/storage": "^6.4.0",
+        "@google-cloud/storage": "^6.4.2",
         "@koa/multer": "^3.0.0",
         "@koa/router": "^12.0.0",
-        "@sentry/tracing": "^7.10.0",
+        "@sentry/tracing": "^7.12.1",
         "domain": "^0.0.1",
-        "http-status": "^1.5.2",
+        "http-status": "^1.5.3",
         "koa": "^2.13.4",
         "koa-bodyparser": "^4.3.0",
         "koa-json": "^2.0.2",
