@@ -76,7 +76,7 @@ export const { link, actions } = {
         {
             path: '*',
             method: 'ALL',
-            priority: -8950,
+            priority: -8940,
             process: verifyToken,
         },
         {

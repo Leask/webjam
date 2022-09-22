@@ -9,6 +9,8 @@ const [wildcardPath, wildcardMethod] = [['*'], ['*']];
 const INTERNAL_SERVER_ERROR = 'Internal Server Error';
 const UNPROCESSABLE_ENTITY = 'Unprocessable Entity';
 const fTime = (time) => Math.floor(time.getTime() / 1000);
+const ok = ctx => ctx.status = 200;
+const ignoreError = ctx => ctx.request.header?.authorization?.startsWith?.('Splunk');
 
 const analyze = async (ctx, next) => {
     ctx.originProtocol = ctx.socket.encrypted || (webjam.proxy
@@ -52,10 +54,6 @@ const extendCtx = async (ctx, next) => {
         await send(ctx, file, { root });
     };
     await next();
-};
-
-const ignoreError = (ctx) => {
-    return ctx.request.header?.authorization?.startsWith?.('Splunk');
 };
 
 const errorHandler = async (ctx, next) => {
@@ -111,9 +109,18 @@ export const { link, actions } = {
             share: false,
         },
         {
+            path: wildcardPath,
+            method: 'OPTIONS',
+            priority: -8950,
+            process: [ok],
+            auth: false,
+            upload: false,
+            share: false,
+        },
+        {
             path: ['api/poke'],
             method: wildcardMethod,
-            priority: -8940,
+            priority: -8930,
             process: [poke],
             auth: false,
             upload: false,
