@@ -26,22 +26,22 @@
         "url": "https://github.com/Leask/webjam"
     },
     "dependencies": {
-        "@google-cloud/storage": "^6.7.0",
+        "@google-cloud/storage": "^6.9.1",
         "@koa/multer": "^3.0.2",
         "@koa/router": "^12.0.0",
-        "@sentry/tracing": "^7.23.0",
+        "@sentry/tracing": "^7.34.0",
         "domain": "^0.0.1",
-        "http-status": "^1.5.3",
-        "koa": "^2.13.4",
+        "http-status": "^1.6.2",
+        "koa": "^2.14.1",
         "koa-bodyparser": "^4.3.0",
         "koa-json": "^2.0.2",
         "koa-logger": "^3.2.1",
         "koa-passport": "^5.0.0",
-        "koa-session": "^6.2.0",
+        "koa-session": "^6.3.1",
         "koa-static": "^5.0.0",
         "koa-useragent": "^4.1.0",
         "multer": "^1.4.4",
         "passport-twitter": "^1.0.4",
-        "utilitas": "^1991.1.6"
+        "utilitas": "^1991.1.8"
     }
 }
