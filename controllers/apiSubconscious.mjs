@@ -1,4 +1,4 @@
-import { geoIp, storage, utilitas } from 'utilitas';
+import { geoIp, manifest, network, storage, utilitas } from 'utilitas';
 import { join } from 'path';
 import httpStatus from 'http-status';
 import send from 'koa-send';
@@ -79,8 +79,21 @@ const errorHandler = async (ctx, next) => {
 
 const poke = async (ctx, next) => {
     ctx.ok({
-        time: new Date(),
-        userAgent: ctx.userAgent.source,
+        service: {
+            title: (await utilitas.which()).title,
+            time: new Date(),
+            uptime: process.uptime(),
+            foundation: {
+                utilitas: manifest.version,
+                webjam: (await utilitas.which('./package.json')).version,
+            },
+            geolocation: await network.getCurrentPosition(),
+        },
+        client: {
+            userAgent: ctx.userAgent.source,
+            ip: ctx.request.ip,
+            geolocation: ctx.userAgent.geoIp,
+        },
     });
 };
 
