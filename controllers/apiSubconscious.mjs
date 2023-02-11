@@ -1,4 +1,5 @@
-import { geoIp, manifest, network, storage, utilitas } from 'utilitas';
+import { geoIp, storage, utilitas } from 'utilitas';
+import { info } from '../lib/webjam.mjs';
 import { join } from 'path';
 import httpStatus from 'http-status';
 import send from 'koa-send';
@@ -78,23 +79,7 @@ const errorHandler = async (ctx, next) => {
 };
 
 const poke = async (ctx, next) => {
-    ctx.ok({
-        service: {
-            title: (await utilitas.which()).title,
-            time: new Date(),
-            uptime: process.uptime(),
-            foundation: {
-                utilitas: manifest.version,
-                webjam: (await utilitas.which('./package.json')).version,
-            },
-            geolocation: await network.getCurrentPosition(),
-        },
-        client: {
-            userAgent: ctx.userAgent.source,
-            ip: ctx.request.ip,
-            geolocation: ctx.userAgent.geoIp,
-        },
-    });
+    ctx.ok(await info(ctx));
 };
 
 const notFound = async (ctx, next) => {
