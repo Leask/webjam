@@ -1,6 +1,7 @@
-import { geoIp, storage, utilitas } from 'utilitas';
 import { info } from '../lib/webjam.mjs';
 import { join } from 'path';
+import { storage, utilitas } from 'utilitas';
+import geoIp from 'fast-geoip';
 import httpStatus from 'http-status';
 import send from 'koa-send';
 
@@ -94,6 +95,7 @@ const notFound = async (ctx, next) => {
 };
 
 export const { link, actions } = {
+    _NEED: ['fast-geoip'],
     link: 'subconscious',
     disabled: false,
     actions: [
