@@ -13,7 +13,7 @@
         "start": "node --no-warnings main.mjs",
         "debug": "node --no-warnings --inspect --trace-warnings debug.mjs",
         "test": "node --no-warnings --trace-warnings test.mjs",
-        "updep": "npx ncu -u && npm install",
+        "updep": "npx npm-check-updates -u && npm install",
         "gitsync": "( git commit -am \"Released @ `date`\" || true ) && git pull && git push",
         "build": "npm run updep && ( git commit -am 'update dependencies' || true )",
         "pub": "npm run build && npm run gitsync",
