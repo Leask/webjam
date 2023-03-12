@@ -7,7 +7,8 @@ const action = async (bot) => {
     });
 };
 
-export const { run, func } = {
+export const { run, priority, func } = {
     run: checkLink('bot'),
+    priority: 10,
     func: action,
 };
