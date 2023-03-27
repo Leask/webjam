@@ -38,12 +38,12 @@
         "koa-static": "^5.0.0",
         "koa-useragent": "^4.1.0",
         "multer": "^1.4.4",
-        "utilitas": "^1992.4.7"
+        "utilitas": "^1992.4.39"
     },
     "devDependencies": {
         "@google-cloud/storage": "^6.9.4",
-        "@sentry/node": "^7.44.2",
-        "@sentry/tracing": "^7.44.2",
+        "@sentry/node": "^7.45.0",
+        "@sentry/tracing": "^7.45.0",
         "domain": "^0.0.1",
         "form-data": "^4.0.0",
         "ioredis": "^5.3.1",
