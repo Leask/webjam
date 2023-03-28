@@ -1,8 +1,7 @@
 import { checkLink } from '../lib/robot.mjs';
 
 const action = async (ctx, next) => {
-    if (ctx.end) { return await next(); }
-    ctx.text === 'poke' && ctx.reply(new Date());
+    ctx.text === 'poke' && ctx.ok(new Date());
     await next();
 };
 
