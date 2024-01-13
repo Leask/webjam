@@ -14,5 +14,5 @@ export const { run, func, interval, tout, delay } = {
     func: action,
     interval: 60,
     tout: 60,
-    delay: 0,
+    delay: 10,
 };
