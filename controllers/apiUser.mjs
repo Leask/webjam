@@ -1,14 +1,17 @@
 import { join } from 'path';
-import { token, user } from '../index.mjs';
+import { token, user, utilitas } from '../index.mjs';
 
 const getPath = (subPath) => join('api/users', subPath);
+const log = content => utilitas.log(content, import.meta.url);
 
 const verifyToken = async (ctx, next) => {
-    const tkn = (ctx.get('Authorization')
-        || ctx.get('token')).replace(/^Bearer\ */i, '');
+    const tkn = (ctx.get('Authorization') || ctx.get('token')
+        || ctx.query['token'] || '').replace(/^Bearer\ */i, '');
     // Use ctx.req instead of ctx to ensure compatibility to multer if you need.
     // This tips is for old version of multer only.
-    try { ctx.verification = await token.verifyForUser(tkn); } catch (err) { }
+    try { ctx.verification = await token.verifyForUser(tkn); } catch (err) {
+        log(`${(err.message || utilitas.ensureString(err)).replace(/\.$/, '')}: '${tkn}'`);
+    }
     await next();
 };
 
