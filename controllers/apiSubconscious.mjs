@@ -1,5 +1,6 @@
 import { info } from '../lib/webjam.mjs';
 import { join } from 'path';
+import { Readable } from 'stream';
 import { storage, utilitas } from 'utilitas';
 import geoIp from 'fast-geoip';
 import httpStatus from 'http-status';
@@ -54,6 +55,16 @@ const extendCtx = async (ctx, next) => {
             return ctx.status = 304;
         }
         await send(ctx, file, { root });
+    };
+    ctx.stream = async (chunk) => {
+        if (!ctx._stream) {
+            ctx.body = ctx._stream = new Readable();
+            ctx.body._read = () => { };
+            ctx.body.pipe(ctx.res);
+        }
+        ctx.body.push(utilitas.isSet(
+            chunk, true
+        ) ? `${utilitas.ensureString(chunk)}\n` : null);
     };
     await next();
 };
