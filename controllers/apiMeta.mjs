@@ -60,7 +60,13 @@ const query = async (ctx, next) => {
             whereVal,
         ]].map(x => dbio.query(...x)));
         assert(resp.length, 'Meta Not Found', 404)
-        ctx.ok({ total: parseInt(cResp[0]['count']), metas: resp });
+        const total = parseInt(cResp[0]['count']);
+        ctx.ok({
+            pagination: {
+                total, order, sort, limit, offset,
+                more: offset + resp.length < total,
+            }, metas: resp,
+        });
     } catch (err) { ctx.er(err, 400); }
 };
 
