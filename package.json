@@ -38,6 +38,7 @@
         "koa-static": "^5.0.0",
         "koa-useragent": "^4.1.0",
         "multer": "^1.4.4",
+        "openai": "^4.25.0",
         "utilitas": "^1995.2.67"
     },
     "devDependencies": {

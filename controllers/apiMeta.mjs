@@ -70,12 +70,18 @@ const query = async (ctx, next) => {
     } catch (err) { ctx.er(err, 400); }
 };
 
+/*
+@todo:
+1: only allow creater to update meta or shared > 1
+2: pack meta, not returning vector to frontend
+*/
+
 export const { link, actions } = {
     link: 'file',
     actions: [
         {
             path: 'api/metas/:class/:id',
-            method: ['PUT', 'POST'],
+            method: ['POST', 'PUT', 'PATCH'],
             process: updateById,
             auth: true,
         },
