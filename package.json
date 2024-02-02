@@ -38,18 +38,18 @@
         "koa-static": "^5.0.0",
         "koa-useragent": "^4.1.0",
         "multer": "^1.4.4",
-        "utilitas": "^1995.2.74"
+        "utilitas": "^1995.2.79"
     },
     "devDependencies": {
         "@google-cloud/storage": "^7.7.0",
-        "@sentry/node": "^7.98.0",
-        "@sentry/tracing": "^7.98.0",
+        "@sentry/node": "^7.99.0",
+        "@sentry/tracing": "^7.99.0",
         "domain": "^0.0.1",
         "form-data": "^4.0.0",
         "ioredis": "^5.3.2",
         "koa-passport": "^6.0.0",
-        "mailgun.js": "^10.0.0",
-        "mysql2": "^3.9.0",
+        "mailgun.js": "^10.1.0",
+        "mysql2": "^3.9.1",
         "node-mailjet": "^6.0.5",
         "openai": "^4.26.0",
         "passport-twitter": "^1.0.4",
