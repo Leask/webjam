@@ -67,10 +67,17 @@ const extendCtx = async (ctx, next) => {
         ) ? `${utilitas.ensureString(chunk)}\n` : null);
     };
     ctx.download = async (file, options) => {
-        const filename = storage.sanitizeFilename(options?.filename || '');
-        ctx.set('Content-Disposition', `attachment; filename="${filename}"`);
+        // https://stackoverflow.com/questions/93551/how-to-encode-the-filename-parameter-of-content-disposition-header-in-http
+        const filename = encodeURIComponent(
+            storage.sanitizeFilename(options?.filename || '')
+        );
+        ctx.set(
+            'Content-Disposition', `attachment; filename*=UTF-8''${filename}`
+        );
         options?.mimeType && (ctx.type = options.mimeType);
-        ctx.body = await storage.convert(file, { ...options, expected: 'BUFFER' });
+        ctx.body = await storage.convert(
+            file, { ...options, expected: 'BUFFER' }
+        );
     };
     await next();
 };
