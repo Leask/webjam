@@ -66,6 +66,12 @@ const extendCtx = async (ctx, next) => {
             chunk, true
         ) ? `${utilitas.ensureString(chunk)}\n` : null);
     };
+    ctx.download = async (file, options) => {
+        const filename = storage.sanitizeFilename(options?.filename || '');
+        ctx.set('Content-Disposition', `attachment; filename="${filename}"`);
+        options?.mimeType && (ctx.type = options.mimeType);
+        ctx.body = await storage.convert(file, { ...options, expected: 'BUFFER' });
+    };
     await next();
 };
 
