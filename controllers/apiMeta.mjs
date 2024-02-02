@@ -35,31 +35,31 @@ export const { link, actions } = {
     link: 'file',
     actions: [
         {
-            path: 'api/metas/:class/:id',
+            path: 'api/meta/:class/:id',
             method: ['POST', 'PUT', 'PATCH'],
             process: updateById,
             auth: true,
         },
         {
-            path: 'api/metas/:class',
+            path: 'api/meta/:class',
             method: 'POST',
             process: create,
             auth: true,
         },
         {
-            path: 'api/metas/:class/:id',
+            path: 'api/meta/:class/:id',
             method: 'GET',
             process: getById,
             auth: true,
         },
         {
-            path: 'api/metas/:class/:id',
+            path: 'api/meta/:class/:id',
             method: 'DELETE',
             process: deleteById,
             auth: true,
         },
         {
-            path: 'api/metas/:class',
+            path: 'api/meta/:class',
             method: 'GET',
             process: query,
             auth: true,
