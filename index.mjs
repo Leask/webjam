@@ -8,6 +8,7 @@ export * as service from './lib/service.mjs';
 export * as splunk from './lib/splunk.mjs';
 export * as token from './lib/token.mjs';
 export * as tracing from './lib/tracing.mjs';
+export * as universal from './lib/universal.mjs';
 export * as user from './lib/user.mjs';
 export * as webjam from './lib/webjam.mjs';
 export * as default from './lib/webjam.mjs';

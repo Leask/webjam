@@ -9,7 +9,9 @@ const verifyToken = async (ctx, next) => {
         || ctx.query['token'] || '').replace(/^Bearer\ */i, '');
     // Use ctx.req instead of ctx to ensure compatibility to multer if you need.
     // This tips is for old version of multer only.
-    try { ctx.verification = await token.verifyForUser(tkn); } catch (err) {
+    try {
+        tkn && (ctx.verification = await token.verifyForUser(tkn));
+    } catch (err) {
         log(`${(err.message || utilitas.ensureString(err)).replace(/\.$/, '')}: '${tkn}'`);
     }
     await next();
