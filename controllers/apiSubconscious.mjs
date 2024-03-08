@@ -56,15 +56,18 @@ const extendCtx = async (ctx, next) => {
         }
         await send(ctx, file, { root });
     };
-    ctx.stream = async (chunk) => {
+    ctx.stream = async (chunk, options) => {
         if (!ctx._stream) {
             ctx.body = ctx._stream = new Readable();
             ctx.body._read = () => { };
             ctx.body.pipe(ctx.res);
         }
-        ctx.body.push(utilitas.isSet(
-            chunk, true
-        ) ? `${utilitas.ensureString(chunk)}\n` : null);
+        let resp = null;
+        if (utilitas.isSet(chunk, true)) {
+            options?.raw || (chunk = chunk.replace(/\n/g, '\r'));
+            resp = `${utilitas.ensureString(chunk)}\n`;
+        }
+        ctx.body.push(resp);
     };
     ctx.download = async (file, options) => {
         // https://stackoverflow.com/questions/93551/how-to-encode-the-filename-parameter-of-content-disposition-header-in-http
