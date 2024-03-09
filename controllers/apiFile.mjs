@@ -1,5 +1,8 @@
 const wrap = async (ctx, next) => {
     const resp = {};
+    if (globalThis.debug) {
+        console.log('> ctx.request.files:', ctx.request.files);
+    }
     ctx.request.files.map((file) => {
         resp[file.fieldname || file.originalname] = file.receipt;
     });
