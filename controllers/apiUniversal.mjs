@@ -9,8 +9,8 @@ const sendUniversal = async (ctx, next) => {
 };
 
 const callFunc = async (ctx, next) => {
-    const { params, options } = ctx.request.body;
-    const stream = options?.stream ? ctx.stream : null;
+    const params = ctx.request.body;
+    const stream = params[~~params?.length - 1]?.stream ? ctx.stream : null;
     const resp = await call(ctx.params.func, params, {
         user: ctx.verification.user, stream
     });

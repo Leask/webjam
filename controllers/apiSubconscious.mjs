@@ -27,6 +27,10 @@ const analyze = async (ctx, next) => {
     }
     ctx.userAgent._agent.geoIp
         = ctx.request.ip ? await geoIp.lookup(ctx.request.ip) : null;
+    if (globalThis.debug) {
+        console.log('> ctx:', ctx);
+        console.log('> ctx.request.body:', ctx.request.body);
+    }
     await next();
 };
 
