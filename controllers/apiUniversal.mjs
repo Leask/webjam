@@ -10,11 +10,12 @@ const sendUniversal = async (ctx, next) => {
 
 const callFunc = async (ctx, next) => {
     const params = ctx.request.body;
-    const stream = params[~~params?.length - 1]?.stream ? ctx.stream : null;
-    const resp = await call(ctx.params.func, params, {
-        user: ctx.verification.user, stream
-    });
-    stream ? stream() : ctx.ok(resp);
+    const last = ~~params?.length - 1;
+    params[last]?.stream && (params[last].stream = ctx.stream);
+    const resp = await call(
+        ctx.params.func, params, { user: ctx.verification.user }
+    );
+    params[last]?.stream ? params[last].stream() : ctx.ok(resp);
 };
 
 export const { actions } = {
