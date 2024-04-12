@@ -12,7 +12,7 @@ export const { link, actions } = {
     link: 'file',
     actions: [
         {
-            path: 'api/respond/:class/:id',
+            path: 'api/responds/:class/:id',
             method: ['POST', 'PUT', 'PATCH'],
             process: act,
             auth: true,
