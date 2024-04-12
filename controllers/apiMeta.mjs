@@ -1,7 +1,6 @@
 import { meta, utilitas } from '../index.mjs';
 
 const updateById = async (ctx, next) => {
-    await utilitas.ignoreErrFunc(() => delete ctx.request.body.responds);
     ctx.ok(await meta.updateById(
         ctx.params.class, ctx.params.id,
         ctx.request.body, ctx.verification.user.id
@@ -9,7 +8,6 @@ const updateById = async (ctx, next) => {
 };
 
 const create = async (ctx, next) => {
-    await utilitas.ignoreErrFunc(() => delete ctx.request.body.responds);
     ctx.ok(await meta.insert(
         ctx.params.class, ctx.request.body, ctx.verification.user.id
     ));
