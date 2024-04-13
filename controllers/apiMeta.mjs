@@ -1,4 +1,5 @@
-import { meta, utilitas } from '../index.mjs';
+import { meta } from '../index.mjs';
+import { respond } from '../index.mjs';
 
 const updateById = async (ctx, next) => {
     ctx.ok(await meta.updateById(
@@ -31,9 +32,35 @@ const query = async (ctx, next) => {
     ));
 };
 
+const respondHiddenTrue = async (ctx, next) => {
+    ctx.ok(await respond.hidden(
+        `meta_${ctx.params.class}`, ctx.params.id,
+        ctx.verification.user.id, true
+    ));
+};
+
+const respondHiddenFalse = async (ctx, next) => {
+    ctx.ok(await respond.hidden(
+        `meta_${ctx.params.class}`, ctx.params.id,
+        ctx.verification.user.id, false
+    ));
+};
+
 export const { link, actions } = {
     link: 'file',
     actions: [
+        {
+            path: 'api/meta/:class/:id/hidden',
+            method: ['POST', 'PUT', 'PATCH'],
+            process: respondHiddenTrue,
+            auth: true,
+        },
+        {
+            path: 'api/meta/:class/:id/hidden',
+            method: 'DELETE',
+            process: respondHiddenFalse,
+            auth: true,
+        },
         {
             path: 'api/meta/:class/:id',
             method: ['POST', 'PUT', 'PATCH'],
