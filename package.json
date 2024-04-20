@@ -39,27 +39,27 @@
         "koa-static": "^5.0.0",
         "koa-useragent": "^4.1.0",
         "multer": "^1.4.4",
-        "utilitas": "^1995.3.9"
+        "utilitas": "^1995.3.11"
     },
     "devDependencies": {
-        "@google-cloud/storage": "^7.9.0",
-        "@sentry/node": "^7.110.0",
-        "@sentry/profiling-node": "^7.110.0",
-        "@sentry/utils": "^7.110.0",
+        "@google-cloud/storage": "^7.10.0",
+        "@sentry/node": "^7.111.0",
+        "@sentry/profiling-node": "^7.111.0",
+        "@sentry/utils": "^7.111.0",
         "domain": "^0.0.1",
         "form-data": "^4.0.0",
-        "ioredis": "^5.3.2",
+        "ioredis": "^5.4.1",
         "koa-passport": "^6.0.0",
         "mailgun.js": "^10.2.1",
-        "mysql2": "^3.9.4",
+        "mysql2": "^3.9.6",
         "node-mailjet": "^6.0.5",
-        "openai": "^4.33.0",
+        "openai": "^4.38.2",
         "passport-twitter": "^1.0.4",
         "pg": "^8.11.5",
         "pgvector": "^0.1.8",
         "ping": "^0.4.4",
         "telegraf": "^4.16.3",
         "telesignsdk": "^2.2.3",
-        "twilio": "^5.0.3"
+        "twilio": "^5.0.4"
     }
 }
