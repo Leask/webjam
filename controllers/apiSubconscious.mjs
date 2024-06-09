@@ -110,6 +110,14 @@ const errorHandler = async (ctx, next) => {
     }
 };
 
+const ensureHttps = async (ctx, next) => {
+    if (globalThis.webjam?.origin === `https://${ctx.request.host}` // There should be a https server on this host
+        && ctx.originProtocol === ptcHttp) { // but the requesting via http
+        return ctx.redirect(`https://${ctx.request.host}${ctx.request.url}`);
+    }
+    await next();
+};
+
 const poke = async (ctx, next) => {
     ctx.ok(await info(ctx));
 };
@@ -135,6 +143,15 @@ export const { link, actions } = {
             method: wildcardMethod,
             priority: -8960,
             process: [analyze, extendCtx, errorHandler],
+            auth: false,
+            upload: false,
+            share: false,
+        },
+        {
+            path: wildcardPath,
+            method: wildcardMethod,
+            priority: -8955,
+            process: [ensureHttps],
             auth: false,
             upload: false,
             share: false,
