@@ -1,5 +1,4 @@
-import { meta } from '../index.mjs';
-import { respond } from '../index.mjs';
+import { meta, respond } from '../index.mjs';
 
 const updateById = async (ctx, next) => {
     ctx.ok(await meta.updateById(

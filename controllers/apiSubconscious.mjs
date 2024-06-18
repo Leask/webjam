@@ -1,7 +1,6 @@
-import { info } from '../lib/webjam.mjs';
 import { join } from 'path';
 import { Readable } from 'stream';
-import { storage, utilitas } from 'utilitas';
+import { storage, utilitas, webjam as libWebjam } from '../index.mjs';
 import geoIp from 'fast-geoip';
 import httpStatus from 'http-status';
 import send from 'koa-send';
@@ -119,7 +118,7 @@ const ensureHttps = async (ctx, next) => {
 };
 
 const poke = async (ctx, next) => {
-    ctx.ok(await info(ctx));
+    ctx.ok(await libWebjam.info(ctx));
 };
 
 const notFound = async (ctx, next) => {
