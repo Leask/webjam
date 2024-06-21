@@ -31,10 +31,8 @@ const callFunc = async (ctx, next) => {
         ctx.params.func, params, { user: ctx.verification.user }
     );
     if (cdnStream) {
-        return (async () => {
-            await resp;
-            params[last].stream()
-        })();
+        (async () => { await resp; params[last].stream(); })();
+        return;
     }
     params[last]?.stream ? params[last].stream() : ctx.ok(await resp);
 };
