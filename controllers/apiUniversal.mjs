@@ -1,4 +1,4 @@
-import { universal, utilitas } from '../index.mjs';
+import { universal } from '../index.mjs';
 
 const filename = 'universal.mjs';
 
@@ -7,36 +7,6 @@ const sendUniversal = async (ctx, next) => {
     const funcs = `const functions = ${JSON.stringify(universal.getFunc(), null, 4)};`;
     await ctx.download(`${runtime}\n\n${funcs}`, { input: 'TEXT', filename });
 };
-
-// import { v4 as uuidv4 } from 'uuid';
-
-// const streamSessions = {};
-
-// const ensureStreamSession = async (id) => {
-//     id || (id = uuidv4());
-//     streamSessions[id] || (streamSessions[id] = { touchedAt: new Date(), events: [] });
-//     return { id, session: streamSessions[id] };
-// };
-
-// // const endStreamSession = async (id) => {
-// //     await utilitas.ignoreErrFunc(() => {
-// //         delete streamSessions[id];
-// //     });
-// // };
-
-// const writeStreamSession = async (id, event) => {
-//     const { id, session } = await ensureStreamSession(id);
-//     session.touchedAt = new Date();
-//     session.events.push(event);
-//     return id;
-// };
-
-// const flushSteamSession = async (id) => {
-//     const { id, session } = await ensureStreamSession(id);
-
-
-// };
-
 
 const callFunc = async (ctx, next) => {
     const params = ctx.request.body;
