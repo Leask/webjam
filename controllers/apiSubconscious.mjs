@@ -34,7 +34,8 @@ const analyze = async (ctx, next) => {
 };
 
 const extendCtx = async (ctx, next) => {
-    ctx.ok = (data) => {
+    ctx.ok = (data, code) => {
+        ~~code && (ctx.response.status = ~~code);
         ctx.body = {
             data: utilitas.isUndefined(data) ? {} : data,
             error: null, success: true,
