@@ -34,7 +34,8 @@ const callFunc = async (ctx, next) => {
         (async () => { await resp; params[last].stream(); })();
         return;
     }
-    params[last]?.stream ? params[last].stream() : ctx.ok(await resp);
+    resp = await resp;
+    params[last]?.stream ? params[last].stream() : ctx.ok(resp);
 };
 
 export const { actions } = {
