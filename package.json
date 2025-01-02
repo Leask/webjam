@@ -39,7 +39,7 @@
         "koa-static": "^5.0.0",
         "koa-useragent": "^4.1.0",
         "multer": "^1.4.4",
-        "utilitas": "^1997.1.17"
+        "utilitas": "^1997.1.38"
     },
     "devDependencies": {
         "@google-cloud/storage": "^7.14.0",
@@ -50,8 +50,8 @@
         "form-data": "^4.0.1",
         "ioredis": "^5.4.2",
         "koa-passport": "^6.0.0",
-        "mailgun.js": "^10.2.4",
-        "mysql2": "^3.11.5",
+        "mailgun.js": "^10.4.0",
+        "mysql2": "^3.12.0",
         "node-mailjet": "^6.0.6",
         "openai": "^4.77.0",
         "passport-twitter": "^1.0.4",
