@@ -1,7 +1,7 @@
-import { shot } from '../index.mjs';
+import { web } from '../index.mjs';
 
 const fetch = async (ctx, next) => {
-    const resp = await shot.get(ctx.request.query.url, { encode: 'BUFFER' });
+    const resp = await web.get(ctx.request.query.url, { encode: 'BUFFER' });
     const chT = new Date(ctx.request.header?.['if-modified-since'] || undefined);
     const mdT = new Date(resp.headers['last-modified']?.[0] || undefined);
     ctx.set('content-type', resp.headers['content-type']);
