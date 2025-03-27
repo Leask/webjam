@@ -26,7 +26,7 @@
         "url": "https://github.com/Leask/webjam"
     },
     "dependencies": {
-        "@koa/multer": "^3.0.2",
+        "@koa/multer": "^3.1.0",
         "@koa/router": "^13.1.0",
         "acme-client": "^5.4.0",
         "fast-geoip": "^1.1.88",
@@ -40,7 +40,7 @@
         "koa-useragent": "^4.1.0",
         "lorem-ipsum": "^2.0.8",
         "multer": "^1.4.4",
-        "utilitas": "^1999.1.44"
+        "utilitas": "^1999.1.45"
     },
     "devDependencies": {
         "@google-cloud/storage": "^7.15.2",
