@@ -27,12 +27,11 @@ const analyze = async (ctx, next) => {
     ctx.userAgent._agent.geoIp
         = ctx.request.ip ? await geoIp.lookup(ctx.request.ip) : null;
     if (globalThis.debug) {
-        // const _ctx = {};
-        // Object.keys(ctx).map(k => [
-        //     'request', 'app', 'originalUrl',
-        // ].includes(k) && (_ctx[k] = ctx[k]));
-        // console.log('> ctx:', _ctx);
-        console.log('> ctx:', ctx);
+        const _ctx = {};
+        Object.keys(ctx).map(k => [
+            'request', 'app', 'originalUrl',
+        ].includes(k) && (_ctx[k] = ctx[k]));
+        console.log('> ctx:', _ctx);
         console.log('> ctx.request.body:', ctx.request.body);
     }
     await next();
