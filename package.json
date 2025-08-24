@@ -40,7 +40,7 @@
         "koa-useragent": "^4.1.0",
         "lorem-ipsum": "^2.0.8",
         "multer": "^2.0.2",
-        "utilitas": "^1999.1.88"
+        "utilitas": "^1999.1.89"
     },
     "devDependencies": {
         "@google-cloud/storage": "^7.17.0",
