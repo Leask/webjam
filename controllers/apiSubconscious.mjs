@@ -32,7 +32,10 @@ const analyze = async (ctx, next) => {
             'request', 'app', 'originalUrl',
         ].includes(k) && (_ctx[k] = ctx[k]));
         console.log('> ctx:', _ctx);
-        console.log('> ctx.request.body:', ctx.request.body);
+        console.log(
+            '> ctx.request.body:',
+            JSON.stringify(ctx.request.body, null, 2)
+        );
     }
     await next();
 };
