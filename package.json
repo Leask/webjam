@@ -1,7 +1,7 @@
 {
     "name": "webjam",
     "description": "A straightforward web framework build for common tasks.",
-    "version": "1995.2.6",
+    "version": "1995.2.7",
     "private": false,
     "homepage": "https://github.com/Leask/webjam",
     "main": "index.mjs",
