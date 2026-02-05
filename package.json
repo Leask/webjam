@@ -27,7 +27,7 @@
     },
     "dependencies": {
         "@koa/multer": "^4.0.0",
-        "@koa/router": "^15.1.1",
+        "@koa/router": "^15.3.0",
         "acme-client": "^5.4.0",
         "fast-geoip": "^1.1.88",
         "http-status": "^2.1.0",
@@ -40,27 +40,27 @@
         "koa-useragent": "^4.1.0",
         "lorem-ipsum": "^2.0.8",
         "multer": "^2.0.2",
-        "utilitas": "^2001.1.117"
+        "utilitas": "^2001.1.123"
     },
     "devDependencies": {
         "@google-cloud/storage": "^7.18.0",
-        "@sentry/node": "^10.32.1",
-        "@sentry/profiling-node": "^10.32.1",
+        "@sentry/node": "^10.38.0",
+        "@sentry/profiling-node": "^10.38.0",
         "@sentry/utils": "^8.55.0",
         "domain": "^0.0.1",
         "form-data": "^4.0.5",
-        "ioredis": "^5.8.2",
+        "ioredis": "^5.9.2",
         "koa-passport": "^6.0.0",
-        "mailgun.js": "^12.4.0",
-        "mysql2": "^3.16.0",
+        "mailgun.js": "^12.7.0",
+        "mysql2": "^3.16.3",
         "node-mailjet": "^6.0.11",
-        "openai": "^6.15.0",
+        "openai": "^6.17.0",
         "passport-twitter": "^1.0.4",
-        "pg": "^8.16.3",
+        "pg": "^8.18.0",
         "pgvector": "^0.2.1",
         "ping": "^1.0.0",
         "telegraf": "^4.16.3",
-        "telesignsdk": "^3.0.4",
-        "twilio": "^5.11.1"
+        "telesignsdk": "^4.0.0",
+        "twilio": "^5.12.0"
     }
 }
