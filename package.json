@@ -27,7 +27,7 @@
     },
     "dependencies": {
         "@koa/multer": "^4.0.0",
-        "@koa/router": "^15.4.0",
+        "@koa/router": "^15.5.0",
         "acme-client": "^5.4.0",
         "fast-geoip": "^1.1.88",
         "http-status": "^2.1.0",
@@ -38,9 +38,9 @@
         "koa-session": "^7.0.2",
         "koa-static": "^5.0.0",
         "koa-useragent": "^4.1.0",
-        "lorem-ipsum": "^2.0.8",
+        "lorem-ipsum": "^3.0.0",
         "multer": "^2.1.1",
-        "utilitas": "^2001.1.148"
+        "utilitas": "^2001.1.150"
     },
     "devDependencies": {
         "@google-cloud/storage": "^7.19.0",
@@ -54,7 +54,7 @@
         "mailgun.js": "^13.0.0",
         "mysql2": "^3.22.3",
         "node-mailjet": "^6.0.11",
-        "openai": "^6.35.0",
+        "openai": "^6.36.0",
         "passport-twitter": "^1.0.4",
         "pg": "^8.20.0",
         "pgvector": "^0.2.1",
