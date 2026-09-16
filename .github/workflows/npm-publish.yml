@@ -1,32 +1,71 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-nodejs-packages
-
 name: Node.js Package
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
-  build:
+  test:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
-    if: "!startsWith(github.event.head_commit.message, '[RELEASE]')"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 22
-          registry-url: https://registry.npmjs.org/
-      - run: git config --global user.name 'Leask Wong'
-      - run: git config --global user.email 'i@leaskh.com'
-      - run: npm version patch -m "[RELEASE] %s"
-      - run: git push
-      - run: npm install
+          node-version: 26
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+      - run: node --test .github/scripts/release.test.mjs
+      - run: npm install --include=dev
+      - name: Build
+        run: |
+          if [ -f build.mjs ]; then node build.mjs; fi
+          npm run pack --if-present
       - run: npm test
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+
+  publish:
+    if: >-
+      github.event_name != 'pull_request'
+      && github.ref == 'refs/heads/main'
+      && !startsWith(github.event.head_commit.message, '[RELEASE]')
+    runs-on: ubuntu-latest
+    environment: npm
+    permissions:
+      contents: write
+      id-token: write
+    concurrency:
+      group: npm-publish
+      cancel-in-progress: false
+    env:
+      RELEASE_BRANCH: main
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 26
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+      - run: node --test .github/scripts/release.test.mjs
+      - name: Prepare or resume release
+        id: release
+        run: node .github/scripts/release.mjs prepare
+      - if: steps.release.outputs.skip != 'true'
+        run: npm install --include=dev
+      - name: Build
+        if: steps.release.outputs.skip != 'true'
+        run: |
+          if [ -f build.mjs ]; then node build.mjs; fi
+          npm run pack --if-present
+      - if: steps.release.outputs.skip != 'true'
+        run: npm test
+      - name: Commit version and publish
+        if: steps.release.outputs.skip != 'true'
+        run: node .github/scripts/release.mjs publish
