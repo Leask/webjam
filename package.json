@@ -40,7 +40,7 @@
         "koa-useragent": "^4.1.0",
         "lorem-ipsum": "^3.0.0",
         "multer": "^2.4.0",
-        "utilitas": "^2001.1.155"
+        "utilitas": "^2001.1.156"
     },
     "devDependencies": {
         "@google-cloud/storage": "^8.1.0",
@@ -54,7 +54,7 @@
         "mailgun.js": "^14.0.1",
         "mysql2": "^3.24.4",
         "node-mailjet": "^6.0.11",
-        "openai": "^7.16.0",
+        "openai": "^7.17.0",
         "passport-twitter": "^1.0.4",
         "pg": "^8.23.0",
         "pgvector": "^0.3.0",
